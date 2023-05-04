@@ -9,8 +9,16 @@ data "terraform_remote_state" "network" {
   }
 }
 
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
 provider "aws" {
-  version = "~> 4.0"
   region  = data.terraform_remote_state.network.outputs.aws_region
 }
 
